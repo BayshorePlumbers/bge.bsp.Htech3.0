@@ -1,0 +1,256 @@
+/* =========================================================
+   payrollprint.css — Bayshore Standard (PRINT)
+   Rewritten/optimized WITHOUT deleting rules
+   Adds a SAFE isolation gate for #printSheet when body.is-printing
+   ========================================================= */
+
+@page {
+  size: A4 portrait;
+  margin: 12.7mm; /* half-inch */
+}
+
+/* =======================
+   Print Mode Gate
+   Only activate print layout when body.is-printing is set by JS
+   ======================= */
+@media print {
+  /* Keep colors */
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background: #fff !important;
+  }
+
+  /* -------------------------------------------------------
+     SAFETY ISOLATION (ADDED, backward-compatible)
+     Ensures ONLY #printSheet prints while body.is-printing.
+     Prevents "print looks the same" issues across browsers.
+     ------------------------------------------------------- */
+  body.is-printing * {
+    visibility: hidden !important;
+  }
+
+  body.is-printing #printSheet,
+  body.is-printing #printSheet * {
+    visibility: visible !important;
+  }
+
+  body.is-printing #printSheet {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+  }
+
+  /* IMPORTANT:
+     Hide the app UI ONLY while we intentionally print */
+  body.is-printing .calculator,
+  body.is-printing form,
+  body.is-printing .button-group {
+    display: none !important;
+  }
+
+  /* Hide the screen header (top-bar) while printing,
+     so the printed sheet header is the only header */
+  body.is-printing > .top-bar {
+    display: none !important;
+  }
+
+  /* Print sheet wrapper */
+  body.is-printing #printSheet {
+    display: block !important;
+    padding: 6mm; /* tighter for better A4 usage */
+    font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 12pt !important; /* MIN 12pt */
+    line-height: 1.25;          /* denser and more legal-doc */
+    color: #000;
+    background: #fff;
+  }
+
+  /* Utility to avoid splitting critical blocks */
+  .no-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* =======================
+   Print Root + Scaling (class-only)
+   Used by com.js applyPrintScale()
+   ======================= */
+@media print {
+  #printRoot {
+    transform-origin: top left;
+  }
+
+  body.print-scale-100 #printRoot { transform: scale(1); }
+  body.print-scale-97  #printRoot { transform: scale(0.97); }
+  body.print-scale-95  #printRoot { transform: scale(0.95); }
+  body.print-scale-93  #printRoot { transform: scale(0.93); }
+  body.print-scale-90  #printRoot { transform: scale(0.90); }
+  body.print-scale-88  #printRoot { transform: scale(0.88); }
+  body.print-scale-85  #printRoot { transform: scale(0.85); }
+}
+
+/* =======================
+   Print Header (.top-bar in print HTML)
+   ======================= */
+@media print {
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 2px solid #000;
+    padding: 0 0 4mm 0;
+    margin: 0 0 4mm 0;
+    background: #fff !important;
+    color: #000 !important;
+    border-radius: 0 !important;
+  }
+
+  .top-bar .logo {
+    max-height: 26px !important;
+    max-width: 26px !important;
+    width: 26px !important;
+    height: 26px !important;
+    object-fit: contain;
+    margin: 0 !important;
+  }
+
+  .header-title {
+    font-size: 14pt !important;
+    font-weight: 800 !important;
+    margin: 0 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+  }
+}
+
+/* =======================
+   Print Tables (general)
+   ======================= */
+@media print {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 3mm 0; /* tighter */
+  }
+
+  th,
+  td {
+    border: 1px solid #000;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12pt !important; /* MIN 12pt */
+  }
+
+  thead th {
+    background: #f0f0f0;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  /* Helper blocks (kept for other calculators) */
+  .info-table th {
+    width: 45mm;
+    background: #f9f9f9;
+  }
+
+  .totals-table {
+    border: 2px solid #000;
+  }
+  .totals-table th {
+    width: 70%;
+    background: #eaeaea;
+    text-align: left;
+  }
+  .totals-table td {
+    font-weight: 800;
+    text-align: right;
+  }
+
+  .totals-table thead th {
+    text-align: center !important;
+  }
+}
+
+/* =======================
+   Optional Alternate Header (.print-header)
+   Kept (not deleted)
+   ======================= */
+@media print {
+  .print-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 4mm;
+    margin-bottom: 6mm;
+    gap: 16px;
+  }
+  .print-header .logo {
+    max-height: 50px;
+  }
+  .print-header h2 {
+    margin: 0;
+    font-size: 16pt;
+    font-weight: 800;
+    text-align: center;
+  }
+}
+
+/* =======================
+   Dense layout for com.js print HTML
+   Scoped to #printRoot so other calculators remain safe
+   ======================= */
+@media print {
+  /* Kill screen container styles in print HTML */
+  body.is-printing #printSheet .container,
+  #printRoot .container {
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  #printRoot h3 {
+    margin: 0 0 2mm 0 !important;
+    padding: 0 !important;
+    font-size: 13pt !important;
+    font-weight: 800 !important;
+    page-break-after: avoid;
+  }
+
+  #printRoot table {
+    margin: 0 0 3mm 0 !important;
+  }
+
+  /* Tighten the tables used in print HTML */
+  #printRoot table.input-data th,
+  #printRoot table.input-data td {
+    padding: 6px 8px !important;
+    font-size: 12pt !important; /* minimum 12pt */
+    line-height: 1.2 !important;
+  }
+
+  /* Notes row */
+  #printRoot .details-section table.input-data td {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* Prevent headings/sections from splitting */
+  #printRoot h3,
+  #printRoot .commission-details-section,
+  #printRoot .commission-details-section table,
+  #printRoot .no-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}

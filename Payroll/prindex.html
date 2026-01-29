@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data: https:;
+                 style-src 'self';
+                 script-src 'self';
+                 connect-src 'self' https:;
+                 base-uri 'self';
+                 form-action 'self';" />
+
+  <title>Payroll Calculators | Bayshore Plumbers</title>
+  <meta name="theme-color" content="#011B2E" />
+
+  <!-- Shared UI + launcher layout + print -->
+  <link rel="stylesheet" href="../assets/css/bp-core.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/css/bp-launcher-2col.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/css/bp-print.css" media="print" type="text/css" />
+
+  <script src="../assets/js/bp-ui.js" defer></script>
+</head>
+
+<body class="bp-ready">
+  <main class="bp-page">
+    <header class="bp-header">
+      <h1>HELLO</h1>
+      <h2>PAYROLL CALCULATORS</h2>
+
+      <div class="logo-container">
+        <img src="../assets/img/BP.png" alt="BP" class="logo" />
+      </div>
+
+      <p>Please select the PAYROLL CALCULATOR that you would like to use today, from the options below:</p>
+    </header>
+
+        <!-- 1) Hourly Calculators -->
+    <h3 class="bp-section-title">1. Hourly Calculator</h3>
+    <div class="file-container">
+      <a class="bp-card" data-id="hourly" data-cat="payroll" href="htech.html" data-keywords="hourly htechSAMA payroll">
+        <div class="bp-icon" aria-hidden="true">
+          <img src="../Thumbnails/kick.jpg" alt="" class="bp-icon__img"
+               data-bp-fallback="../assets/img/thumbnails/BP.png"
+               loading="eager" fetchpriority="high" decoding="async" width="128" height="128" />
+        </div>
+        <div class="bp-card__body">
+          <div class="bp-card__kicker">Hourly</div>
+          <div class="bp-card__title">Hourly Calculator</div>
+          <div class="bp-card__meta">Hourly tech commission</div>
+        </div>
+      </a>
+    </div>
+
+    <!-- 2) Sales Calculators -->
+    <h3 class="bp-section-title">2. Sales Calculator</h3>
+    <div class="file-container">
+      <a class="bp-card" data-id="sales-hourly" data-cat="payroll" href="payrollHOURLY.html" data-keywords="sales hourly technicians payrollHourly">
+        <div class="bp-icon" aria-hidden="true">
+          <img src="../Thumbnails/salemain.jpg" alt="" class="bp-icon__img"
+               data-bp-fallback="../assets/img/thumbnails/BP.png"
+               loading="eager" fetchpriority="high" decoding="async" width="128" height="128" />
+        </div>
+        <div class="bp-card__body">
+          <div class="bp-card__kicker">Sales</div>
+          <div class="bp-card__title">Sales — Hourly Technicians</div>
+          <div class="bp-card__meta">Hourly tech sales calculator</div>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
