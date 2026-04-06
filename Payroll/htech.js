@@ -14,11 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'Aimel Mohammadi': 25,
     'Alberto Lopez': 30,
     'Alberto/Aimel': 55,
-    'Celso Collindres': 40,
-    'David Jimenez': 30,
-    'David/Celso': 70,
     'Edvin Garcia': 35,
-    'Jose Rodriguez (Chepe)': 30,
+    'Kevin Perez': 30,
     'Ryan Felt': 50,
   };
 
