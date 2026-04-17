@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'Alberto Lopez': 30,
     'Alberto/Aimel': 55,
     'Edvin Garcia': 35,
+    'Jose Rodriguez': 32,
+    'Juan Hernandez': 62,
     'Kevin Perez': 30,
     'Ryan Felt': 50,
   };
